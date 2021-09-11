@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/small-invoice.css" />
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <title>Receipt example</title>
+  </head>
+  <body>
+    <div class="ticket">
+      <div style="text-align: center">
+        <% shop.forEach(shops => { %>
+        <img src="img/<%= shops.imageName %>" alt="Logo" />
+        <ul style="list-style-type: none; padding-left: 0">
+          <h1><%= shops.shopName %></h1>
+          <li>Address : <%= shops.address %></li>
+          <li>Phone : +91 <%= shops.phoneNo %></li>
+          <li>Email : <%= shops.email %></li>
+          <li>Website : <%= shops.websiteUrl %></li>
+          <li>GSTIN : <%= shops.gstinNo %></li>
+        </ul>
+        <% }) %>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Item</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price/Unit</th>
+            <th scope="col">GST</th>
+            <th scope="col">Amount</th>
+          </tr>
+        </thead>
+        <tbody style="text-align: center">
+          <% items.forEach(item => {%>
+          <tr>
+            <td style="font-weight: bold" scope="row"></td>
+            <td><%= item.itemName %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.pricePerUnit %></td>
+            <td><%= item.gst %></td>
+            <td><%= item.amount %></td>
+          </tr>
+          <%}); %>
+        </tbody>
+      </table>
+      <br />
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8">
+          <table class="table" style="margin-bottom: 0">
+            <tbody>
+              <% total.forEach(total => { %>
+              <tr>
+                <td>Subtotal</td>
+                <td style="float: right"><%= total.subtotal %></td>
+              </tr>
+              <tr>
+                <td>Tax</td>
+                <td style="float: right"><%= total.gst %></td>
+              </tr>
+              <tr>
+                <td>Round Off</td>
+                <td style="float: right"><%= total.roundOff %></td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td style="float: right"><%= total.total %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <br />
+      <br />
+      <% shop.forEach(shops => { %>
+      <p class="centered">
+        Thanks for your purchase! <br /><%= shops.websiteUrl %>
+      </p>
+      <% }) %>
+    </div>
+    <script src="dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Edit Product | <%= supplier.supplierName %></title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="/vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Custom styles for this template-->
+    <link href="/css/sb-admin-2.css" rel="stylesheet" />
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script>
+      window.jQuery = window.$ = require("jquery");
+    </script>
+    <script src="/js/cities.js"></script>
+  </head>
+
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="/"
+        >
+          <div class="sidebar-brand-text mx-3">
+            <img
+              src="../img/BillWaleLogo.png"
+              alt="Bill Dedo"
+              style="width: 100%"
+            />
+          </div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="fas fa-th-large"></i>
+            <span>Dashboard</span></a
+          >
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            <i class="fas fa-shopping-basket"></i>
+            <span>Product Management</span>
+          </a>
+          <div
+            id="collapseOne"
+            class="collapse"
+            aria-labelledby="headingOne"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addproduct">Add Products</a>
+              <a class="collapse-item" href="/tables">Product List</a>
+            </div>
+          </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseTwo"
+            aria-expanded="true"
+            aria-controls="collapseTwo"
+          >
+            <i class="fas fa-list-alt"></i>
+            <span>Category Management</span>
+          </a>
+          <div
+            id="collapseTwo"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addCategory">Add Category</a>
+              <a class="collapse-item" href="/categoryTables">Category List</a>
+            </div>
+          </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseThree"
+            aria-expanded="true"
+            aria-controls="collapseThree"
+          >
+            <i class="fas fa-rupee-sign"></i>
+            <span>Tax Management</span>
+          </a>
+          <div
+            id="collapseThree"
+            class="collapse"
+            aria-labelledby="headingThree"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addTaxClass">Add Tax Class</a>
+              <a class="collapse-item" href="/taxTables">Tax List</a>
+            </div>
+          </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseFour"
+            aria-expanded="true"
+            aria-controls="collapseFour"
+          >
+            <i class="fas fa-store"></i>
+            <span>Store Management</span>
+          </a>
+          <div
+            id="collapseFour"
+            class="collapse"
+            aria-labelledby="headingFour"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addStore">Add Store Details</a>
+              <a class="collapse-item" href="/setPrinterSize"
+                >Set Printer Size</a
+              >
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseFive"
+            aria-expanded="true"
+            aria-controls="collapseFive"
+          >
+            <i class="fas fa-file-invoice"></i>
+            <span>Invoices</span>
+          </a>
+          <div
+            id="collapseFive"
+            class="collapse"
+            aria-labelledby="headingFive"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/invoiceTable">List Invoices</a>
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+        <!-- <li class="nav-item active">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseSix"
+            aria-expanded="true"
+            aria-controls="collapseSix"
+          >
+            <i class="fas fa-shopping-cart"></i>
+            <span>Supplier Management</span>
+          </a>
+          <div
+            id="collapseSix"
+            class="collapse"
+            aria-labelledby="headingSix"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addSupplier">Add Supplier</a>
+              <a class="collapse-item" href="/supplierTables">List Supplier</a>
+              <a class="collapse-item" href="/tables">Purchase Order</a>
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" /> -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseSeven"
+            aria-expanded="true"
+            aria-controls="collapseSeven"
+          >
+            <i class="fas fa-user-friends"></i>
+            <span>Customer Management</span>
+          </a>
+          <div
+            id="collapseSeven"
+            class="collapse"
+            aria-labelledby="headingFive"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/customerTable">List Customers</a>
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseEight"
+            aria-expanded="true"
+            aria-controls="collapseEight"
+          >
+            <i class="fas fa-dolly-flatbed"></i>
+            <span>Inventory Management</span>
+          </a>
+          <div
+            id="collapseEight"
+            class="collapse"
+            aria-labelledby="headingEight"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/productStockTable"
+                >Product Stock List</a
+              >
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+      </ul>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <div class="row mb-3">
+                <div class="col-auto">
+                  <button
+                    class="btn btn-secondary btn-circle"
+                    onclick="goBack()"
+                  >
+                    <i class="fas fa-arrow-left"></i>
+                  </button>
+                </div>
+                <div class="col-auto">
+                  <h1 class="h3 mb-0 text-gray-800">
+                    Edit Supplier - <%= supplier.supplierName %>
+                  </h1>
+                </div>
+              </div>
+            </div>
+
+            <div class="addProduct" style="width: 65%">
+              <form
+                id="data"
+                action="/editSupplier/<%= supplier._id %> "
+                enctype="multipart/form-data"
+                method="post"
+              >
+                <div class="row">
+                  <div class="col-6">
+                    <div class="mb-3">
+                      <label for="supplierName" class="form-label"
+                        >Supplier Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="supplierName"
+                        name="supplierName"
+                        value="<%= supplier.supplierName %>"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="supplierMob" class="form-label"
+                        >Supplier Mob</label
+                      >
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="supplierMob"
+                        name="supplierMob"
+                        value="<%= supplier.supplierMob %>"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="supplierEmail" class="form-label"
+                        >Supplier Email</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="supplierEmail"
+                        name="supplierEmail"
+                        value="<%= supplier.supplierEmail %>"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="supplierPhone" class="form-label"
+                        >Supplier Phone</label
+                      >
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="supplierPhone"
+                        name="supplierPhone"
+                        value="<%= supplier.supplierPhone %>"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="supplierGstNumber" class="form-label"
+                        >Supplier GST Number</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="supplierGstNumber"
+                        name="supplierGstNumber"
+                        value="<%= supplier.supplierGstNumber %>"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="mb-3">
+                      <label for="checkout-country" class="form-label"
+                        >State</label
+                      >
+                      <select
+                        onchange="print_city('state', this.selectedIndex);"
+                        class="form-control custom-select"
+                        id="sts"
+                        name="stt"
+                        value="<%= supplier.state %>"
+                      >
+                        <option value="<%= supplier.state %>">
+                          <%= supplier.state %>
+                        </option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="checkout-city" class="form-label">City</label>
+                      <select
+                        class="form-control custom-select"
+                        id="state"
+                        name="city"
+                        value="<%= supplier.city %>"
+                      >
+                        <option value="<%= supplier.city %>">
+                          <%= supplier.city %>
+                        </option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="postcode" class="form-label">Postcode</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="postcode"
+                        name="postcode"
+                        value="<%= supplier.postcode %>"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="address" class="form-label">Address</label>
+                      <textarea
+                        class="form-control"
+                        id="address"
+                        rows="3"
+                        name="address"
+                      >
+<%= supplier.address %></textarea
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
+    <script language="javascript">
+      print_state("sts");
+    </script>
+    <script>
+      $("form#data").submit(function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+          type: "POST",
+          url: $("form#data").attr("action"),
+          data: $("form#data").serialize(),
+          success: function (response) {
+            const { dialog } = require("electron").remote;
+            if (response.msg == "success") {
+              dialog
+                .showMessageBox({
+                  buttons: ["Ok"],
+                  title: "Success",
+                  message: "Supplier data Edited Successfully",
+                  detail:
+                    "Your Supplier data is Edited successfully in your app!",
+                })
+                .then((result) => {
+                  if (result.response === 0) {
+                    location.reload();
+                  }
+                });
+            } else if (response.msg == "error") {
+              dialog
+                .showMessageBox({
+                  buttons: ["Ok"],
+                  title: "Error",
+                  message: "Something Went wrong",
+                  detail: "Your Supplier data not edited!",
+                })
+                .then((result) => {
+                  if (result.response === 0) {
+                    location.reload();
+                  }
+                });
+            }
+          },
+          error: function (response) {
+            //  alert('server error')
+          },
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      var remote = require("electron").remote;
+      document.addEventListener("keydown", function (e) {
+        if (e.which === 123) {
+          remote.getCurrentWindow().webContents.openDevTools();
+        } else if (e.which === 116) {
+          location.reload();
+        }
+      });
+    </script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+2) There must be bulk option to add bulk category as well as products in csv./xlx format with sample.
+11) There must be option for export to excel (.xlx) for category and product List. Which can be importable.
+15) There must be option for 1 year subscription.
+16) Billdedo Exe.file should not install without Unique Purchase Key Number. (1 Product = 1 Key).

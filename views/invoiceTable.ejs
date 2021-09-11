@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Store Management</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/theme.min.css" />
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.css" rel="stylesheet" />
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="vendor/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      window.jQuery = window.$ = require("jquery");
+    </script>
+    <style>
+      body {
+        height: 100%;
+        -webkit-print-color-adjust: exact !important;
+      }
+      .css-serial {
+        counter-reset: serial-number; /* Set the serial number counter to 0 */
+      }
+
+      .css-serial td:first-child:before {
+        counter-increment: serial-number; /* Increment the serial number counter */
+        content: counter(serial-number); /* Display the counter */
+      }
+      @media screen {
+        #printSection {
+          display: none;
+        }
+      }
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        #printSection,
+        #printSection * {
+          -webkit-print-color-adjust: exact !important;
+          visibility: visible;
+        }
+        #printSection {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        .footer {
+          position: static; /* <-- Key line */
+          bottom: 20px;
+          left: 0px;
+          width: 100%;
+        }
+      }
+    </style>
+    <!-- Custom styles for this page -->
+  </head>
+
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="/"
+        >
+          <div class="sidebar-brand-text mx-3">
+            <img
+              src="../img/BillWaleLogo.png"
+              alt="Bill Dedo"
+              style="width: 100%"
+            />
+          </div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="fas fa-th-large"></i>
+            <span>Dashboard</span></a
+          >
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            <i class="fas fa-shopping-basket"></i>
+            <span>Product Management</span>
+          </a>
+          <div
+            id="collapseOne"
+            class="collapse"
+            aria-labelledby="headingOne"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addproduct">Add Products</a>
+              <a class="collapse-item" href="/tables">Product List</a>
+            </div>
+          </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseTwo"
+            aria-expanded="true"
+            aria-controls="collapseTwo"
+          >
+            <i class="fas fa-list-alt"></i>
+            <span>Category Management</span>
+          </a>
+          <div
+            id="collapseTwo"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addCategory">Add Category</a>
+              <a class="collapse-item" href="/categoryTables">Category List</a>
+            </div>
+          </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseThree"
+            aria-expanded="true"
+            aria-controls="collapseThree"
+          >
+            <i class="fas fa-rupee-sign"></i>
+            <span>Tax Management</span>
+          </a>
+          <div
+            id="collapseThree"
+            class="collapse"
+            aria-labelledby="headingThree"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addTaxClass">Add Tax Class</a>
+              <a class="collapse-item" href="/taxTables">Tax List</a>
+            </div>
+          </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseFour"
+            aria-expanded="true"
+            aria-controls="collapseFour"
+          >
+            <i class="fas fa-store"></i>
+            <span>Store Management</span>
+          </a>
+          <div
+            id="collapseFour"
+            class="collapse"
+            aria-labelledby="headingFour"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addStore">Add Store Details</a>
+              <a class="collapse-item" href="/setPrinterSize"
+                >Set Printer Size</a
+              >
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseFive"
+            aria-expanded="true"
+            aria-controls="collapseFive"
+          >
+            <i class="fas fa-file-invoice"></i>
+            <span>Invoices</span>
+          </a>
+          <div
+            id="collapseFive"
+            class="collapse"
+            aria-labelledby="headingFive"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/invoiceTable">List Invoices</a>
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+        <!-- <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseSix"
+            aria-expanded="true"
+            aria-controls="collapseSix"
+          >
+            <i class="fas fa-shopping-cart"></i>
+            <span>Supplier Management</span>
+          </a>
+          <div
+            id="collapseSix"
+            class="collapse"
+            aria-labelledby="headingSix"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/addSupplier">Add Supplier</a>
+              <a class="collapse-item" href="/supplierTables">List Supplier</a>
+              <a class="collapse-item" href="/tables">Purchase Order</a>
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" /> -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseSeven"
+            aria-expanded="true"
+            aria-controls="collapseSeven"
+          >
+            <i class="fas fa-user-friends"></i>
+            <span>Customer Management</span>
+          </a>
+          <div
+            id="collapseSeven"
+            class="collapse"
+            aria-labelledby="headingFive"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/customerTable">List Customers</a>
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseEight"
+            aria-expanded="true"
+            aria-controls="collapseEight"
+          >
+            <i class="fas fa-dolly-flatbed"></i>
+            <span>Inventory Management</span>
+          </a>
+          <div
+            id="collapseEight"
+            class="collapse"
+            aria-labelledby="headingEight"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="/productStockTable"
+                >Product Stock List</a
+              >
+            </div>
+          </div>
+        </li>
+        <hr class="sidebar-divider" />
+      </ul>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">Invoices</h1>
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <div class="row">
+                  <div class="col-10">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      Invoice List
+                    </h6>
+                  </div>
+                  <div class="col-2">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-success"
+                      onclick="download_table_as_csv('dataTable')"
+                    >
+                      <i class="fas fa-download"></i> Export to Excel
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    class="table table-bordered css-serial"
+                    id="dataTable"
+                    width="100%"
+                    cellspacing="0"
+                  >
+                    <thead>
+                      <tr>
+                        <th style="width: 25px">Sr. No.</th>
+                        <th>Invoice No.</th>
+                        <th>Customer Name</th>
+                        <th>Customer Mo.</th>
+                        <th>Items</th>
+                        <th>Date Created</th>
+                        <th>Payment Mode</th>
+                        <th>Invoice Total</th>
+                        <th style="width: 85px">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% invoice.forEach(function (invoice){%>
+                      <tr>
+                        <td style="font-weight: bold"></td>
+                        <td><%= invoice.id %></td>
+                        <td>
+                          <%if(invoice.custName === undefined){%> -- <%}else{%>
+                          <%=invoice.custName%> <%}%>
+                        </td>
+                        <td>
+                          <%if(invoice.custNo === undefined){%> -- <%}else{%>
+                          <%=invoice.custNo%> <%}%>
+                        </td>
+                        <td>
+                          <ul>
+                            <% invoice.invoiceItems.forEach(element => {%>
+
+                            <li><%= element.itemName %></li>
+
+                            <% }); %>
+                          </ul>
+                        </td>
+                        <td>
+                          <%= invoice.createdAt.toLocaleString('en-US', { month:
+                          'long', day: '2-digit', year: 'numeric', hour:
+                          '2-digit' }); %>
+                        </td>
+                        <td>
+                          <%if(invoice.paymentMode === undefined){%> Cash
+                          <%}else{%> <%=invoice.paymentMode%> <%}%>
+                        </td>
+                        <td><%= invoice.subtotal.total %></td>
+                        <td
+                          style="
+                            width: 80px;
+                            text-align: center;
+                            vertical-align: middle;
+                          "
+                        >
+                          <button
+                            type="button"
+                            id="printModal"
+                            type="submit"
+                            data-toggle="modal"
+                            data-target="#modal-edit-user-<%= invoice._id %>"
+                            class="btn btn-primary btn-circle btn-sm"
+                          >
+                            <i class="far fa-eye"></i>
+                          </button>
+                          <button
+                            type="button"
+                            onclick="removeInvoice('<%= invoice._id %>')"
+                            class="btn btn-danger btn-circle btn-sm"
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <%})%>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <% invoice.forEach(invoice => { %>
+    <div
+      class="modal"
+      id="modal-edit-user-<%= invoice._id %>"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="printModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Print Invoice - <%= invoice.id %></h5>
+            <button
+              type="button"
+              class="btn-close closePrintModal"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="printThis">
+            <div class="container">
+              <% shop.forEach(shops => { %>
+              <div class="row">
+                <div class="col-6">
+                  <ul style="list-style-type: none; padding-left: 0">
+                    <h1><%= shops.shopName %></h1>
+                    <li>Address : <%= shops.address %></li>
+                    <li>Phone : +91 <%= shops.phoneNo %></li>
+                    <li>Email : <%= shops.email %></li>
+                    <li>Website : <%= shops.websiteUrl %></li>
+                    <li>GSTIN : <%= shops.gstinNo %></li>
+                  </ul>
+                </div>
+                <div class="col-6">
+                  <img
+                    src="img/<%= shops.imageName %>"
+                    width="100px"
+                    style="float: right"
+                    alt="logo"
+                  />
+                </div>
+              </div>
+              <% }); %>
+              <div class="row" style="text-align: center; padding: 15px 0">
+                <h2>Tax Invoice</h2>
+              </div>
+              <div
+                class="d-flex justify-content-between"
+                style="padding: 15px 0"
+              >
+                <div class="">
+                  <h6>Invoice No.:&nbsp;<%= invoice.id %></h6>
+                  <h6>Bill To:&nbsp;<%= invoice.custName %></h6>
+                </div>
+                <div class="">
+                  <h6>Date: <%= date %></h6>
+                </div>
+              </div>
+              <div>
+                <table
+                  class="table css-serial"
+                  style="border-bottom: solid 1px; border-top: solid 1px"
+                >
+                  <thead
+                    style="
+                      background-color: #f48116 !important;
+                      color: #fff !important;
+                    "
+                  >
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Item Name</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price/Unit</th>
+                      <th scope="col">GST</th>
+                      <th scope="col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%invoice.invoiceItems.forEach(item =>{%>
+                    <tr>
+                      <td style="font-weight: bold" scope="row"></td>
+                      <td><%= item.itemName %></td>
+                      <td><%= item.quantity %></td>
+                      <td><%= item.pricePerUnit %></td>
+                      <td><%= item.gst %></td>
+                      <td><%= item.amount %></td>
+                    </tr>
+                    <%}); %>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row footer">
+                <div class="col-6"></div>
+                <div class="col-6">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Subtotal</td>
+                        <td style="float: right">
+                          <%= invoice.subtotal.subtotal %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Tax</td>
+                        <td style="float: right">
+                          <%= invoice.subtotal.gst %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Round Off</td>
+                        <td style="float: right">
+                          <%= invoice.subtotal.roundOff %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Discount</td>
+                        <td style="float: right">
+                          <%= invoice.subtotal.discount %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Total</td>
+                        <td style="float: right">
+                          <%= invoice.subtotal.total %>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-8">
+                    Terms & Conditions: <%shop.forEach(shops=>{%>
+                    <div style="font-size: 8px; white-space: pre-line">
+                      <%= shops.terms %>
+                    </div>
+                    <% }); %>
+                  </div>
+                  <div class="col-4">
+                    <div class="row">
+                      <div class="col-auto">Bill By :</div>
+                      <div class="col-auto">
+                        <a
+                          name="target"
+                          href="http://billdedo.com"
+                          target="_blank"
+                        >
+                          <img
+                            src="img/billdedologo.png"
+                            width="120"
+                            height="120"
+                            alt=""
+                        /></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="Print" class="btn btn-primary">
+              Print Bill
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(".closePrintModal").on("click", () => {
+        $("#modal-edit-user-<%= invoice._id %>").modal("hide");
+      });
+    </script>
+    <%}); %>
+    <script>
+      document.getElementById("Print").onclick = function () {
+        printElement(document.getElementById("printThis"));
+      };
+
+      function printElement(elem) {
+        var domClone = elem.cloneNode(true);
+
+        var $printSection = document.getElementById("printSection");
+
+        if (!$printSection) {
+          var $printSection = document.createElement("div");
+          $printSection.id = "printSection";
+          document.body.appendChild($printSection);
+        }
+
+        $printSection.innerHTML = "";
+        $printSection.appendChild(domClone);
+        window.print();
+      }
+    </script>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+    <script type="text/javascript">
+      var remote = require("electron").remote;
+      document.addEventListener("keydown", function (e) {
+        if (e.which === 123) {
+          remote.getCurrentWindow().webContents.openDevTools();
+        } else if (e.which === 116) {
+          location.reload();
+        }
+      });
+    </script>
+    <script>
+      function download_table_as_csv(table_id, separator = ",") {
+        var rows = document.querySelectorAll("table#" + table_id + " tr");
+        var csv = [];
+        for (var i = 0; i < rows.length; i++) {
+          var row = [],
+            cols = rows[i].querySelectorAll("td, th");
+          for (var j = 0; j < cols.length; j++) {
+            var data = cols[j].innerText
+              .replace(/(\r\n|\n|\r)/gm, "")
+              .replace(/(\s\s)/gm, " ");
+            data = data.replace(/"/g, '""');
+            row.push('"' + data + '"');
+          }
+          csv.push(row.join(separator));
+        }
+        var csv_string = csv.join("\n");
+        var filename = "Invoices.csv";
+        var link = document.createElement("a");
+        link.style.display = "none";
+        link.setAttribute("target", "_blank");
+        link.setAttribute(
+          "href",
+          "data:text/csv;charset=utf-8," + encodeURIComponent(csv_string)
+        );
+        link.setAttribute("download", filename);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    </script>
+    <script>
+      function removeInvoice(invoiceId) {
+        $.ajax({
+          url: "/removeInvoice",
+          method: "post",
+          dataType: "json",
+          data: { invoiceId: invoiceId },
+          success: function (response) {
+            const { dialog } = require("electron").remote;
+            if (response.msg == "success") {
+              dialog
+                .showMessageBox({
+                  buttons: ["Ok"],
+                  title: "Success",
+                  message: "Invoice deleted Successfully",
+                  detail: "Your Invoice is deleted successfully",
+                })
+                .then((result) => {
+                  if (result.response === 0) {
+                    location.reload();
+                  }
+                });
+            } else {
+              dialog.showErrorBox({
+                title: "Error",
+                message: "Invoive not deleted",
+                detail: "Something Went Wrong!",
+              });
+            }
+          },
+          error: function (response) {
+            //  alert('server error')
+          },
+        });
+      }
+    </script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+  </body>
+</html>

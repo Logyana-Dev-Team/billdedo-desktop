@@ -1,0 +1,106 @@
+.invisible {
+  visibility: hidden;
+}
+
+h3 {
+  margin-top: 2rem;
+}
+
+input[type="button"] {
+  margin-bottom: 0;
+}
+.card-text {
+  font-size: 14px;
+  text-align: left;
+  font-weight: 500;
+}
+.productCards {
+  width: 10rem;
+  margin: 0 10px;
+  padding: 0;
+  display: flex;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.categoryCards {
+  width: 7rem;
+  height: 9rem;
+  margin: 0 10px;
+  padding: 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15) !important;
+}
+@media (max-width: 768px) {
+  .carousel-inner .carousel-item > div {
+    display: none;
+  }
+  .carousel-inner .carousel-item > div:first-child {
+    display: block;
+  }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+/* display 3 */
+@media (min-width: 768px) {
+  .carousel-inner .carousel-item-right.active,
+  .carousel-inner .carousel-item-next {
+    transform: translateX(33.333%);
+  }
+
+  .carousel-inner .carousel-item-left.active,
+  .carousel-inner .carousel-item-prev {
+    transform: translateX(-33.333%);
+  }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left {
+  transform: translateX(0);
+}
+
+.filterDiv {
+  display: none; /* Hidden by default */
+  margin-bottom: 20px;
+}
+.show {
+  display: block;
+}
+.categoryText {
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+.invoice-section {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  overflow: auto;
+  padding: 15px 0 0 0;
+  border-radius: 1%;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.fa-trash {
+  cursor: pointer;
+}
+
+.fa-trash:hover {
+  color: red;
+}
+
+.totalBarBottom {
+  overflow: hidden;
+  border-top: 1px solid #000;
+  background-color: #fff;
+  position: fixed;
+  padding: 10px 35px 10px;
+  width: 44.6%;
+  bottom: 0;
+}
+.subtotalTable td {
+  padding: 5px 4px;
+  border: none;
+}

@@ -1,0 +1,25 @@
+body {
+  -webkit-print-color-adjust: exact !important;
+}
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+  }
+}
+.css-serial {
+  counter-reset: serial-number; /* Set the serial number counter to 0 */
+}
+
+.css-serial td:first-child:before {
+  counter-increment: serial-number; /* Increment the serial number counter */
+  content: counter(serial-number); /* Display the counter */
+}
+
+.border {
+  border-bottom: solid 1px !important;
+  border-top: solid 1px !important;
+}
+.thead {
+  background-color: #f48116 !important;
+  color: #fff !important;
+}
